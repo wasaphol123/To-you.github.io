@@ -364,35 +364,35 @@
             }
         }
 
-        @media screen and (max-width: 360px) {
-            .gift-box {
-                width: 120px;
-                height: 120px;
-            }
-
-            .bow {
-                font-size: 35px;
-            }
-
-            .gift-text {
-                font-size: 14px;
-                margin-top: 25px;
-            }
-
-            .popup-content h2 {
-                font-size: 20px;
-            }
-
-            .popup-content p {
-                font-size: 14px;
-            }
-
-            .anniversary-image {
-                width: 120px;
-                height: 120px;
-            }
-
-        .gallery-image {
-            width: calc(50% - 4px);
+    @media screen and (max-width: 360px) {
+        .gift-box {
+            width: 120px;
+            height: 120px;
         }
+
+        .bow {
+            font-size: 35px;
+        }
+
+        .gift-text {
+            font-size: 14px;
+            margin-top: 25px;
+        }
+
+        .popup-content h2 {
+            font-size: 20px;
+        }
+
+        .popup-content p {
+            font-size: 14px;
+        }
+
+        .anniversary-image {
+            width: 120px;
+            height: 120px;
+        }
+
+    .gallery-image {
+        width: calc(50% - 4px);
     }
+}
