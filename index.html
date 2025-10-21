@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>วันครบรอบ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+   
+</head>
+<body>
+    <div class="floating-hearts"></div>
+
+    <audio id="bgMusic" loop>
+        <source src="Suriel Hess - Little Bit More Lyrics.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
+    <div class="gift-box" onclick="openPopup()">
+        <div class="bow">🎀</div>
+    </div>
+
+    <div class="popup-overlay" id="popup" onclick="closePopup(event)">
+        <div class="popup-content" onclick="event.stopPropagation()">
+            <h2>🎉 ครบแล้วอีกเดือนแล้วนะอ้วน 🎉</h2>
+            <div class="heart">💕</div>
+            <p>อยู่ด้วยกันมาอีกเดือนแล้ว</p>
+            <p>ขอบคุณนะหมูอ้วน</p>
+            <p>ไม่มีไรจะให้นะ มีแค่นี้ อิอิ</p>
+            <div class="popup-gallery">
+                <img src="สื่อ (2).jpeg" alt="Couple" class="gallery-image">
+                <img src="สื่อ (3).jpeg" alt="Romance" class="gallery-image">
+                <img src="สื่อ (4).jpeg" alt="Love" class="gallery-image">
+                <img src="สื่อ (5).jpeg" alt="Friendship" class="gallery-image">
+                <img src="สื่อ (6).jpeg" alt="Family" class="gallery-image">
+                <img src="สื่อ (7).jpeg" alt="Sweet" class="gallery-image">
+            </div>
+            <div class="heart">❤️</div>
+            <button class="close-btn" onclick="closePopup(event)">ปิด</button>
+        </div>
+    </div>
+
+    <div id="image-popup" class="image-popup-overlay" onclick="closeImagePopup()">
+        <span class="image-popup-close-btn">&times;</span>
+        <img class="image-popup-content" id="popup-image">
+    </div>
+
+    <div class="music-controls" id="musicControls">
+        <button class="music-btn" onclick="toggleMusic()">🎵</button>
+    </div>
+
+    <script>
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'floating-heart';
+            heart.innerHTML = ['❤️', '💕', '💝', '💖'][Math.floor(Math.random() * 4)];
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+            heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
+            document.querySelector('.floating-hearts').appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 6000);
+        }
+
+        setInterval(createHeart, 300);
+
+        function openPopup() {
+            document.getElementById('popup').classList.add('active');
+        }
+
+        function closePopup(event) {
+            event.stopPropagation();
+            document.getElementById('popup').classList.remove('active');
+            document.getElementById('bgMusic').pause();
+            document.getElementById('bgMusic').currentTime = 0;
+        }
+
+        function playMusic() {
+            const music = document.getElementById('bgMusic');
+            const musicControls = document.getElementById('musicControls');
+            music.volume = 0.5; // ตั้งระดับเสียงที่ 50%
+            music.play().catch(function(error) {
+                console.log("ไม่สามารถเล่นเพลงได้โดยอัตโนมัติ:", error);
+            });
+            musicControls.classList.add('active');
+        }
+
+        function toggleMusic() {
+            const music = document.getElementById('bgMusic');
+            const musicBtn = document.querySelector('.music-btn');
+            if (music.paused) {
+                music.play();
+                musicBtn.innerHTML = '🎵';
+            } else {
+                music.pause();
+                musicBtn.innerHTML = '🔇';
+            }
+        }
+
+        function openPopup() {
+            document.getElementById('popup').classList.add('active');
+            playMusic();
+        }
+
+        const imagePopup = document.getElementById('image-popup');
+        const popupImage = document.getElementById('popup-image');
+        const galleryImages = document.querySelectorAll('.gallery-image');
+
+        galleryImages.forEach(image => {
+            image.addEventListener('click', () => {
+                imagePopup.style.display = 'flex';
+                popupImage.src = image.src;
+            });
+        });
+
+        function closeImagePopup() {
+            imagePopup.style.display = 'none';
+        }
+    </script>
+</body>
+</html>
